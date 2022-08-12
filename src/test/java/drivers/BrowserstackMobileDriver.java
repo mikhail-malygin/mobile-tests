@@ -1,6 +1,10 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import config.BrowserstackUrl;
+import config.CredentialsConfig;
+import config.MobileConfig;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -12,19 +16,27 @@ import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
+    static CredentialsConfig credentialsConfig = ConfigFactory.create(CredentialsConfig.class);
+    static BrowserstackUrl browserstackUrl = ConfigFactory.create(BrowserstackUrl.class);
+    private final MobileConfig mobileConfig;
+
+    public BrowserstackMobileDriver() {
+        this.mobileConfig = ConfigFactory.create(MobileConfig.class, System.getProperties());
+    }
+
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
 
-        mutableCapabilities.setCapability("browserstack.user", "bsuser54224");
-        mutableCapabilities.setCapability("browserstack.key", "1mqAsAouaoov2qoFTLGU");
+        mutableCapabilities.setCapability("browserstack.user", credentialsConfig.user());
+        mutableCapabilities.setCapability("browserstack.key", credentialsConfig.key());
 
-        mutableCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+        mutableCapabilities.setCapability("app", "bs://0eabb6cecb69e963e4fa4a173a457e6f78456510");
 
-        mutableCapabilities.setCapability("device", "Google Pixel 3");
-        mutableCapabilities.setCapability("os_version", "9.0");
+        mutableCapabilities.setCapability("device", mobileConfig.getDevice());
+        mutableCapabilities.setCapability("os_version", mobileConfig.getOsVersion());
 
         mutableCapabilities.setCapability("project", "First Java Project");
         mutableCapabilities.setCapability("build", "browserstack-build-1");
@@ -37,7 +49,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
     public static URL getBrowserstackUrl() {
         try {
-            return new URL("http://hub.browserstack.com/wd/hub");
+            return new URL(browserstackUrl.url());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
