@@ -1,7 +1,6 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import config.BrowserstackUrl;
 import config.CredentialsConfig;
 import config.MobileConfig;
 import org.aeonbits.owner.ConfigFactory;
@@ -17,7 +16,6 @@ import java.net.URL;
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
     static CredentialsConfig credentialsConfig = ConfigFactory.create(CredentialsConfig.class);
-    static BrowserstackUrl browserstackUrl = ConfigFactory.create(BrowserstackUrl.class);
     private final MobileConfig mobileConfig;
 
     public BrowserstackMobileDriver() {
@@ -38,7 +36,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("device", mobileConfig.getDevice());
         mutableCapabilities.setCapability("os_version", mobileConfig.getOsVersion());
 
-        mutableCapabilities.setCapability("project", "First Java Project");
+        mutableCapabilities.setCapability("project", "Mobile Tests");
         mutableCapabilities.setCapability("build", "browserstack-build-1");
         mutableCapabilities.setCapability("name", "first_test");
 
@@ -49,7 +47,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
     public static URL getBrowserstackUrl() {
         try {
-            return new URL(browserstackUrl.url());
+            return new URL(credentialsConfig.url());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

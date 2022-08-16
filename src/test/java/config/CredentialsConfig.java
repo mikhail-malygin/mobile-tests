@@ -6,4 +6,5 @@ import org.aeonbits.owner.Config;
 public interface CredentialsConfig extends Config {
     String user();
     String key();
+    String url();
 }
