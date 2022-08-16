@@ -15,6 +15,7 @@ public class AndroidSearchTests extends TestBase {
     void searchTest() {
 
         step("Type search", () -> {
+            $(AppiumBy.id("org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click();
             $(AppiumBy.accessibilityId("Search Wikipedia")).click();
             $(AppiumBy.id("org.wikipedia.alpha:id/search_src_text"))
                     .sendKeys("BrowserStack");
