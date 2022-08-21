@@ -29,7 +29,7 @@ public class OpenArticleInWikipediaTests extends TestBase {
                         .shouldHave(sizeGreaterThan(0)));
 
         step("Open article", () ->
-                $$(AppiumBy.id("org.wikipedia.alpha:id/page_list_item_container")).
+                $$(AppiumBy.id("org.wikipedia.alpha:id/page_list_item_title")).
                         filterBy(text("Java (programming language)")).first().click());
 
         step("Verify content found", () ->
