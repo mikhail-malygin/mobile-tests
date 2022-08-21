@@ -33,8 +33,8 @@ public class OpenArticleInWikipediaTests extends TestBase {
                         filterBy(text("Java (programming language)")).first().click());
 
         step("Verify content found", () ->
-                $(AppiumBy.accessibilityId("Java (programming language)"))
-                        .shouldHave(text("Java (programming language)")));
+                $(AppiumBy.id("pcs-edit-section-title-description"))
+                        .shouldHave(text("Java (programming language")));
     }
 
 }
