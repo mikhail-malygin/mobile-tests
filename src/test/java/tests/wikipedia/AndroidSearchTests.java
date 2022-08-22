@@ -2,6 +2,7 @@ package tests.wikipedia;
 
 import io.appium.java_client.AppiumBy;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
@@ -13,6 +14,7 @@ import static io.qameta.allure.Allure.step;
 public class AndroidSearchTests extends TestBase {
 
     @Test
+    @Tag("search")
     void searchTest() {
 
         step("Skip onboarding", () ->

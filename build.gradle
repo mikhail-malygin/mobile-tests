@@ -61,5 +61,16 @@ tasks.withType(Test) {
     }
 }
 
+task search_test(type: Test) {
+    useJUnitPlatform{
+        includeTags "search"
+    }
+}
+
+task open_page_test(type: Test) {
+    useJUnitPlatform{
+        includeTags "openPage"
+    }
+}
 
 

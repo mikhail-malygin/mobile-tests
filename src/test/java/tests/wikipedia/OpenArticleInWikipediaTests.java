@@ -1,6 +1,7 @@
 package tests.wikipedia;
 
 import io.appium.java_client.AppiumBy;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
@@ -13,6 +14,7 @@ import static io.qameta.allure.Allure.step;
 public class OpenArticleInWikipediaTests extends TestBase {
 
     @Test
+    @Tag("openPage")
     void openJavaArticle() {
 
         step("Skip onboarding", () ->
@@ -33,7 +35,7 @@ public class OpenArticleInWikipediaTests extends TestBase {
                         filterBy(text("Java (programming language)")).first().click());
 
         step("Verify content found", () ->
-                $(AppiumBy.accessibilityId("pcs-edit-section-title-description"))
+                $(AppiumBy.xpath("//android.widget.TextView[@resource-id='pcs-edit-section-title-description']"))
                         .shouldHave(text("Object-oriented programming language")));
     }
 
