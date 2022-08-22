@@ -35,7 +35,7 @@ public class OpenArticleInWikipediaTests extends TestBase {
                         filterBy(text("Java (programming language)")).first().click());
 
         step("Verify content found", () ->
-                $(AppiumBy.xpath("//android.widget.TextView[@resource-id='pcs-edit-section-title-description']"))
+                $(AppiumBy.xpath("//android.widget.TextView[2][@resource-id='pcs-edit-section-title-description']"))
                         .shouldHave(text("Object-oriented programming language")));
     }
 
