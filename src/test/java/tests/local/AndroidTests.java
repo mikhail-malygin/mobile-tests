@@ -1,6 +1,7 @@
 package tests.local;
 
 import io.appium.java_client.AppiumBy;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -12,6 +13,7 @@ import static io.qameta.allure.Allure.step;
 public class AndroidTests extends TestBase {
 
     @Test
+    @Tag("mobile")
     void searchTest() {
 
         step("Skip onboarding", () ->
@@ -29,6 +31,7 @@ public class AndroidTests extends TestBase {
     }
 
     @Test
+    @Tag("mobile")
     void onboardingPageTests() {
 
         step("Check the first onboarding page", () -> {
@@ -75,6 +78,7 @@ public class AndroidTests extends TestBase {
     }
 
     @Test
+    @Tag("mobile")
     void addLanguageTests() {
 
         step("add language", () -> {

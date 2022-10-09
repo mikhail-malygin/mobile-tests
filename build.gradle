@@ -69,9 +69,17 @@ task search_test(type: Test) {
 }
 
 task open_page_test(type: Test) {
-    useJUnitPlatform{
+    useJUnitPlatform {
         includeTags "openPage"
     }
+
+
+task mobile_test(type: Test) {
+    useJUnitPlatform{
+        includeTags "mobile"
+    }
+}
+
 }
 
 
