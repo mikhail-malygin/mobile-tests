@@ -53,6 +53,7 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Test) {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 
     testLogging {
         lifecycle {
@@ -63,7 +64,6 @@ tasks.withType(Test) {
 }
 
 task search_test(type: Test) {
-    systemProperties(System.getProperties())
     useJUnitPlatform{
         includeTags "search"
     }
