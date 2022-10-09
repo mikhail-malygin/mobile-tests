@@ -20,16 +20,16 @@ public class LocalMobileDriver implements WebDriverProvider {
 
     @Nonnull
     @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    public WebDriver createDriver(Capabilities capabilities) {
         File app = getApp();
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setPlatformName("Android");
-        //options.setDeviceName("Pixel 4 API 30");
-        options.setDeviceName("9ba8c4c6");
-        options.setPlatformVersion("9.0");
+        options.setDeviceName("Pixel 4 API 30");
+        //options.setDeviceName("9ba8c4c6");
+        options.setPlatformVersion("11.0");
         options.setApp(app.getAbsolutePath());
         options.setAppPackage("org.wikipedia.alpha");
         options.setAppActivity("org.wikipedia.main.MainActivity");
@@ -46,7 +46,8 @@ public class LocalMobileDriver implements WebDriverProvider {
     }
 
     private File getApp() {
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/releases/download/latest/app-alpha-universal-release.apk";
+        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
+                "releases/download/latest/app-alpha-universal-release.apk";
         String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
 
         File app = new File(appPath);
