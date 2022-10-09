@@ -63,6 +63,7 @@ tasks.withType(Test) {
 }
 
 task search_test(type: Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform{
         includeTags "search"
     }
