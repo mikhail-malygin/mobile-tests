@@ -2,7 +2,9 @@ package tests.local;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import drivers.LocalMobileDriver;
+import drivers.BrowserstackMobileDriver;
+import drivers.EmulatorDeviceDriver;
+import drivers.RealDeviceDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -15,9 +17,20 @@ import static io.qameta.allure.Allure.step;
 
 
 public class TestBase {
+    static String deviceHost = System.getProperty("deviceHost", "emulation");
+
     @BeforeAll
-    public static void setup() {
-        Configuration.browser = LocalMobileDriver.class.getName();
+    public static void setUp() {
+        switch (deviceHost) {
+            case ("browserstack"):
+                Configuration.browser = BrowserstackMobileDriver.class.getName();
+                break;
+            case ("real"):
+                Configuration.browser = RealDeviceDriver.class.getName();
+            default:
+                Configuration.browser = EmulatorDeviceDriver.class.getName();
+        }
+
         Configuration.browserSize = null;
     }
 

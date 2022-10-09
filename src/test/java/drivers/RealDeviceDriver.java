@@ -1,9 +1,10 @@
 package drivers;
-
 import com.codeborne.selenide.WebDriverProvider;
+import config.RealDeviceConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 
@@ -16,7 +17,9 @@ import java.net.URL;
 
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
-public class LocalMobileDriver implements WebDriverProvider {
+public class RealDeviceDriver implements WebDriverProvider{
+
+    static final RealDeviceConfig realDeviceConfig = ConfigFactory.create(RealDeviceConfig.class, System.getProperties());
 
     @Nonnull
     @Override
@@ -27,9 +30,9 @@ public class LocalMobileDriver implements WebDriverProvider {
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setPlatformName("Android");
-        options.setDeviceName("Pixel 4 API 30");
+        options.setDeviceName(realDeviceConfig.deviceName());
         //options.setDeviceName("9ba8c4c6");
-        options.setPlatformVersion("11.0");
+        options.setPlatformVersion(realDeviceConfig.platformVersion());
         options.setApp(app.getAbsolutePath());
         options.setAppPackage("org.wikipedia.alpha");
         options.setAppActivity("org.wikipedia.main.MainActivity");
@@ -62,5 +65,4 @@ public class LocalMobileDriver implements WebDriverProvider {
 
         return app;
     }
-
 }
