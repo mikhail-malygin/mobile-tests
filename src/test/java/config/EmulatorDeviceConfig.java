@@ -11,6 +11,6 @@ public interface EmulatorDeviceConfig extends Config {
 
     String deviceName();
     String platformVersion();
-
+    String appiumUrl();
 
 }

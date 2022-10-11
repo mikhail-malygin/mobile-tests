@@ -41,7 +41,7 @@ public class EmulatorDeviceDriver implements WebDriverProvider{
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://localhost:4723/wd/hub");
+            return new URL(emulatorDeviceConfig.appiumUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
