@@ -13,4 +13,7 @@ public interface RealDeviceConfig extends Config {
     @Key("platform_version")
     String platformVersion();
 
+    @Key("appium_URL")
+    String appiumUrl();
+
 }

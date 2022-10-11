@@ -41,7 +41,7 @@ public class EmulatorDeviceDriver implements WebDriverProvider{
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL(emulatorDeviceConfig.appiumUrl());
+            return new URL(emulatorDeviceConfig.remoteDriver());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
