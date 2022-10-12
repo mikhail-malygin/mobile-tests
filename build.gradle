@@ -80,7 +80,6 @@ task mobile_test(type: Test) {
         includeTags "mobile"
     }
 }
-
 }
 
 

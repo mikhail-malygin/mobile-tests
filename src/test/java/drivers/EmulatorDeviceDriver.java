@@ -22,14 +22,13 @@ public class EmulatorDeviceDriver implements WebDriverProvider{
     static final EmulatorDeviceConfig emulatorDeviceConfig = ConfigFactory.create(EmulatorDeviceConfig.class, System.getProperties());
     @Nonnull
     @Override
-    public WebDriver createDriver(Capabilities capabilities) {
+    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         File app = getApp();
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setPlatformName("Android");
-        //options.setDeviceName("9ba8c4c6");
+        options.setPlatformName(emulatorDeviceConfig.platformName());
         options.setDeviceName(emulatorDeviceConfig.deviceName());
         options.setPlatformVersion(emulatorDeviceConfig.platformVersion());
         options.setApp(app.getAbsolutePath());
@@ -41,7 +40,7 @@ public class EmulatorDeviceDriver implements WebDriverProvider{
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL(emulatorDeviceConfig.remoteDriver());
+            return new URL(emulatorDeviceConfig.appiumUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

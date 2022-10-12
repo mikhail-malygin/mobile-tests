@@ -29,9 +29,8 @@ public class RealDeviceDriver implements WebDriverProvider{
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setPlatformName("Android");
+        options.setPlatformName(realDeviceConfig.platformName());
         options.setDeviceName(realDeviceConfig.deviceName());
-        //options.setDeviceName("9ba8c4c6");
         options.setPlatformVersion(realDeviceConfig.platformVersion());
         options.setApp(app.getAbsolutePath());
         options.setAppPackage("org.wikipedia.alpha");
