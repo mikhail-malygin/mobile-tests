@@ -47,13 +47,10 @@ public class EmulatorDeviceDriver implements WebDriverProvider{
     }
 
     private File getApp() {
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
-                "releases/download/latest/app-alpha-universal-release.apk";
-        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
 
-        File app = new File(appPath);
+        File app = new File(emulatorDeviceConfig.appPath());
         if (!app.exists()) {
-            try (InputStream inputStream = new URL(appUrl).openStream()) {
+            try (InputStream inputStream = new URL(emulatorDeviceConfig.appUrl()).openStream()) {
                 copyInputStreamToFile(inputStream, app);
             }
             catch (IOException e) {

@@ -16,6 +16,12 @@ public interface EmulatorDeviceConfig extends Config {
     @Key("platform_version")
     String platformVersion();
 
+    @Key("app_URL")
+    String appUrl();
+
+    @Key("app_path")
+    String appPath();
+
     @Key("appium_URL")
     String appiumUrl();
 
